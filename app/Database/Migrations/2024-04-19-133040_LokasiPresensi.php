@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Pegawai extends Migration
+class LokasiPresensi extends Migration
 {
     public function up()
     {
@@ -15,49 +15,47 @@ class Pegawai extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nip' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '50',
-            ],
-            'nama' => [
+            'nama_lokasi' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'jenis_kelamin' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '10',
-            ],
-            'alamat' => [
+            'alamat_lokasi' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'no_handphone' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-            ],
-            'jabatan' => [
+            'tipe_lokasi' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'lokasi_presensi' => [
+            'latitude' => [
                 'type' => 'VARCHAR',
                 'constraint' => '50',
             ],
-            'foto' => [
+            'longitude' => [
                 'type' => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '50',
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
+            'radius' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
+            'zona_waktu' => [
+                'type' => 'VARCHAR',
+                'constraint' => '4',
+            ],
+            'jam_masuk' => [
+                'type' => 'TIME'
+            ],
+            'jam_pulang' => [
+                'type' => 'TIME'
             ]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('pegawai');
+        $this->forge->createTable('lokasi_presensi');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pegawai');
+        $this->forge->dropTable('lokasi_presensi');
     }
 }
