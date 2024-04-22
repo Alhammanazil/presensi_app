@@ -26,7 +26,7 @@ class Login extends BaseController
             $data['validation'] = $this->validator;
             return view('login', $data);
         } else {
-            $session = \Config\Services::session();
+            $session = session();
             $loginModel = new LoginModel();
 
             $username = $this->request->getVar('username');
@@ -37,26 +37,37 @@ class Login extends BaseController
                 $password_db = $cekusername['password'];
                 $cek_password = password_verify($password, $password_db);
                 if ($cek_password) {
+
+                    $session_data = [
+                        'username' => $cekusername['username'],
+                        'role_id' => $cekusername['role'],
+                        'logged_in' => TRUE
+                    ];
+                    $session -> set($session_data);
                     switch ($cekusername['role']) {
-                        case 'admin':
-                            $session->set('username', $username);
-                            $session->set('role', 'admin');
-                            return redirect()->to('/dashboard');
-                            break;
-                        case 'user':
-                            $session->set('username', $username);
-                            $session->set('role', 'user');
-                            return redirect()->to('/dashboard');
-                            break;
+                        case 'Admin':
+                            return redirect()->to('admin/home');
+                        case 'Pegawai':
+                            return redirect()->to('pegawai/home');
+                        default:
+                            $session->setFlashdata('pesan', 'Username Tidak Terdaftar');
+                            return redirect()->to('/');
                     }
                 } else {
                     $session->setFlashdata('pesan', 'Password Salah, Silahkan Coba Lagi');
                     return redirect()->to('/');
                 }
             } else {
-                $session->setFlashdata('pesan', 'Username Tidak Terdaftar');
+                $session->setFlashdata('pesan', 'Username Salah, Silahkan Coba Lagi');
                 return redirect()->to('/');
             }
         }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
     }
 }
