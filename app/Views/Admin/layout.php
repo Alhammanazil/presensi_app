@@ -17,6 +17,10 @@
 
     <!-- =========== Tabler ICON ========= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/1.35.0/iconfont/tabler-icons.min.css" integrity="sha512-tpsEzNMLQS7w9imFSjbEOHdZav3/aObSESAL1y5jyJDoICFF2YwEdAHOPdOr1t+h8hTzar0flphxR76pd0V1zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css" />
+
 </head>
 
 <body>
@@ -59,6 +63,26 @@
                         </svg>
                         <span class="text">Data Pegawai</span>
                     </a>
+                </li>
+
+                <li class="nav-item nav-item-has-children mb-2">
+                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#master-data" aria-controls="ddmenu_1" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" />
+                            <path d="M4 6v6a8 3 0 0 0 16 0v-6" />
+                            <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
+                        </svg>
+                        <span class="text">Master Data</span>
+                    </a>
+                    <ul id="master-data" class="collapse dropdown-nav">
+                        <li>
+                            <a href="<?= base_url('admin/jabatan') ?>"> Data Jabatan </a>
+                        </li>
+                        <li>
+                            <a href="index.html"> Lokasi Presensi </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item nav-item-has-children mb-2">
@@ -250,6 +274,18 @@
     <script src="<?= base_url('assets/js/jvectormap.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/polyfill.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
+
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#jabatan').DataTable();
+        });
+    </script>
 </body>
 
 </html>

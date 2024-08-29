@@ -43,7 +43,7 @@ class Login extends BaseController
                         'role_id' => $cekusername['role'],
                         'logged_in' => TRUE
                     ];
-                    $session -> set($session_data);
+                    $session->set($session_data);
                     switch ($cekusername['role']) {
                         case 'Admin':
                             return redirect()->to('admin/home');

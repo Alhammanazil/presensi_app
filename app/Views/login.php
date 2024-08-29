@@ -53,11 +53,11 @@
                                 customers.
                             </p>
 
-                            <?php if(!empty(session()->getFlashdata('pesan'))) : ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <?= session()->getFlashdata('pesan') ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                            <?php if (!empty(session()->getFlashdata('pesan'))) : ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?= session()->getFlashdata('pesan') ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                             <?php endif; ?>
 
                             <form action="<?php echo base_url('login'); ?>" method="POST">

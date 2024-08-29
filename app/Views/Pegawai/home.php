@@ -76,23 +76,23 @@
         }
     }
 
-// Waktu Keluar
-window.setInterval("waktuKeluar()", 1000);
+    // Waktu Keluar
+    window.setInterval("waktuKeluar()", 1000);
 
-function waktuKeluar() {
-    const waktu = new Date();
-    document.getElementById("jam-keluar").innerHTML = formatWaktu(waktu.getHours());
-    document.getElementById("menit-keluar").innerHTML = formatWaktu(waktu.getMinutes());
-    document.getElementById("detik-keluar").innerHTML = formatWaktu(waktu.getSeconds());
-}
-
-function formatWaktu(waktu) {
-    if (waktu < 10) {
-        return "0" + waktu;
-    } else {
-        return waktu
+    function waktuKeluar() {
+        const waktu = new Date();
+        document.getElementById("jam-keluar").innerHTML = formatWaktu(waktu.getHours());
+        document.getElementById("menit-keluar").innerHTML = formatWaktu(waktu.getMinutes());
+        document.getElementById("detik-keluar").innerHTML = formatWaktu(waktu.getSeconds());
     }
-}
+
+    function formatWaktu(waktu) {
+        if (waktu < 10) {
+            return "0" + waktu;
+        } else {
+            return waktu
+        }
+    }
 </script>
 
 <?= $this->endSection() ?>
