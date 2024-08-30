@@ -80,7 +80,7 @@
                             <a href="<?= base_url('admin/jabatan') ?>"> Data Jabatan </a>
                         </li>
                         <li>
-                            <a href="index.html"> Lokasi Presensi </a>
+                            <a href="<?= base_url('admin/lokasi_presensi') ?>"> Lokasi Presensi </a>
                         </li>
                     </ul>
                 </li>
@@ -281,9 +281,53 @@
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
 
+    <!-- Sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
+        // Datatables
         $(document).ready(function() {
             $('#jabatan').DataTable();
+        });
+
+        // Sweetalert berhasil
+        $(function() {
+            <?php if (session()->has('berhasil')) { ?>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "<?= $_SESSION['berhasil'] ?>"
+                });
+            <?php } ?>
+        });
+
+        // Sweetalert konfirmasi hapus
+        $('.tombol-hapus').on('click', function() {
+            var getLink = $(this).attr('href');
+            Swal.fire({
+                title: "Hapus data?",
+                text: "Data yang di hapus tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = getLink;
+                }
+            });
+            return false;
         });
     </script>
 </body>
