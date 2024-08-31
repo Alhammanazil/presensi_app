@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\PegawaiModel;
 use App\Models\UserModel;
+use App\Models\LokasiPresensiModel;
+use App\Models\JabatanModel;
 
 class DataPegawai extends BaseController
 {
@@ -24,64 +26,68 @@ class DataPegawai extends BaseController
     {
         $pegawaiModel = new PegawaiModel();
         $data = [
-            'title' => 'Detail Lokasi Presensi',
-            'lokasi_presensi' => $pegawaiModel->find($id)
+            'title' => 'Detail Pegawai',
+            'pegawai' => $pegawaiModel->detailPegawai($id)
         ];
-        return view('admin/lokasi_presensi/detail', $data);
+        return view('admin/data_pegawai/detail', $data);
     }
 
     public function create()
     {
+        $lokasi_presensi = new LokasiPresensiModel();
+        $jabatan_model = new JabatanModel();
         $data = [
-            'title' => 'Tambah Lokasi Presensi',
+            'title' => 'Tambah Pegawai',
+            'lokasi_presensi' => $lokasi_presensi->findAll(),
+            'jabatan' => $jabatan_model->orderBy('jabatan', 'ASC')->findAll(),
             'validation' => \Config\Services::validation()
         ];
-        return view('admin/lokasi_presensi/create', $data);
+        return view('admin/data_pegawai/create', $data);
     }
 
     public function store()
     {
         $rules = [
-            'nama_lokasi' => [
+            'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Nama Lokasi harus diisi'
+                    'required' => 'Nama harus diisi'
                 ],
             ],
-            'alamat_lokasi' => [
+            'jenis_kelamin' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Alamat Lokasi harus diisi'
+                    'required' => 'Jenis Kelamin harus diisi'
                 ],
             ],
-            'tipe_lokasi' => [
+            'alamat' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Tipe Lokasi harus diisi'
+                    'required' => 'Alamat harus diisi'
                 ],
             ],
-            'latitude' => [
+            'no_handphone' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Latitude harus diisi'
+                    'required' => 'No. Handphone harus diisi'
                 ],
             ],
-            'longitude' => [
+            'jabatan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Longitude harus diisi'
+                    'required' => 'Jabatan harus diisi'
                 ],
             ],
-            'radius' => [
+            'lokasi_presensi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Radius harus diisi'
+                    'required' => 'Lokasi Presensi harus diisi'
                 ],
             ],
-            'zona_waktu' => [
-                'rules' => 'required',
+            'foto' => [
+                'rules' => 'required | is_image[foto] | max_size[foto, 1024]',
                 'errors' => [
-                    'required' => 'Zona Waktu harus diisi'
+                    'required' => 'Foto harus diisi'
                 ],
             ],
             'jam_masuk' => [
@@ -223,12 +229,12 @@ class DataPegawai extends BaseController
     function delete($id)
     {
         $pegawaiModel = new PegawaiModel();
-        $lokasi_presensi = $pegawaiModel->find($id);
-        if ($lokasi_presensi) {
+        $pegawaiModel = $pegawaiModel->find($id);
+        if ($pegawaiModel) {
             $pegawaiModel->delete($id);
 
             session()->setFlashdata('berhasil', 'Data lokasi dihapus');
-            return redirect()->to(base_url('admin/lokasi_presensi'));
+            return redirect()->to(base_url('admin/data_pegawai'));
         }
     }
 }

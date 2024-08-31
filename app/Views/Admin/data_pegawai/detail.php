@@ -4,51 +4,57 @@
 
 <div class="card col-md-8">
     <div class="card-body">
+        <img style="border-radius: 30px 30px 30px 30px;" width="150px" src="<?= base_url('profile/' . $pegawai['foto']) ?>" alt="">
         <table class="table table-hover">
             <tr>
-                <td>Nama Lokasi</td>
+                <td>NIP</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['nama_lokasi'] ?></td>
+                <td><?= $pegawai['nip'] ?></td>
             </tr>
             <tr>
-                <td>Alamat Lokasi</td>
+                <td>Nama</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['alamat_lokasi'] ?></td>
+                <td><?= $pegawai['nama'] ?></td>
             </tr>
             <tr>
-                <td>Tipe Lokasi</td>
+                <td>Username</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['tipe_lokasi'] ?></td>
+                <td><?= $pegawai['username'] ?></td>
             </tr>
             <tr>
-                <td>Latitude</td>
+                <td>Jenis Kelamin</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['latitude'] ?></td>
+                <td><?= $pegawai['jenis_kelamin'] ?></td>
             </tr>
             <tr>
-                <td>Longitude</td>
+                <td>Alamat</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['longitude'] ?></td>
+                <td><?= $pegawai['alamat'] ?></td>
             </tr>
             <tr>
-                <td>Radius</td>
+                <td>No. Handphone</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['radius'] ?></td>
+                <td><?= $pegawai['no_handphone'] ?></td>
             </tr>
             <tr>
-                <td>Zona Waktu</td>
+                <td>Jabatan</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['zona_waktu'] ?></td>
+                <td><?= $pegawai['jabatan'] ?></td>
             </tr>
             <tr>
-                <td>Jam Masuk</td>
+                <td>Lokasi Presensi</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['jam_masuk'] ?></td>
+                <td><?= $pegawai['lokasi_presensi'] ?></td>
             </tr>
             <tr>
-                <td>Jam Pulang</td>
+                <td>Status</td>
                 <td>:</td>
-                <td><?= $lokasi_presensi['jam_pulang'] ?></td>
+                <td><?= $pegawai['status'] ?></td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td>:</td>
+                <td><?= $pegawai['role'] ?></td>
             </tr>
         </table>
     </div>
