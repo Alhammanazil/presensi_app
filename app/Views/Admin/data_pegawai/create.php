@@ -21,8 +21,8 @@
                 <label>Jenis Kelamin</label>
                 <select name="jenis_kelamin" class="form-control <?= $validation->hasError('jenis_kelamin') ? 'is-invalid' : '' ?>">
                     <option value="">Pilih Jenis Kelamin</option>
-                    <option value="WIB">Laki-laki</option>
-                    <option value="WITA">Perempuan</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
                 </select>
 
                 <div class="invalid-feedback">
