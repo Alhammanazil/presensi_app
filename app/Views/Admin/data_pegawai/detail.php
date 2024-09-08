@@ -3,6 +3,8 @@
 <?= $this->section('content') ?>
 
 <div class="card col-md-8">
+    <button class="col-2 main-btn primary-btn btn-hover m-3" style="padding: 0.3rem 1rem; font-size: 0.9rem;" onclick="location.href='<?= base_url('admin/data_pegawai') ?>'">Kembali</button>
+
     <div class="card-body">
         <img style="border-radius: 30px 30px 30px 30px;" width="150px" src="<?= base_url('profile/' . $pegawai['foto']) ?>" alt="">
         <table class="table table-hover">

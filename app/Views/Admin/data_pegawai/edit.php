@@ -4,7 +4,12 @@
 
 <div class="card col-md-6">
     <div class="card-body">
+
+        <button class="main-btn primary-btn btn-hover my-3" style="padding: 0.3rem 1rem; font-size: 0.9rem;" onclick="location.href='<?= base_url('admin/data_pegawai') ?>'">Kembali</button>
+
         <form method="POST" action="<?= base_url('admin/data_pegawai/update/' . $pegawai['id'] . '') ?>" enctype="multipart/form-data">
+
+            <?= csrf_field() ?>
 
             <!-- Nama Pegawai -->
             <div class="input-style-1">
@@ -37,7 +42,7 @@
             <!-- Alamat -->
             <div class="input-style-1">
                 <label>Alamat</label>
-                <textarea name="alamat" name="alamat" cols="30" rows="5" placeholder="Masukkan Alamat" class="form-control <?= $validation->hasError('alamat') ? 'is-invalid' : '' ?>"></textarea>
+                <textarea name="alamat" name="alamat" cols="30" rows="5" placeholder="Masukkan Alamat" class="form-control <?= $validation->hasError('alamat') ? 'is-invalid' : '' ?>"><?= $pegawai['alamat'] ?></textarea>
 
                 <div class="invalid-feedback">
                     <?= $validation->getError('alamat') ?>
@@ -47,7 +52,7 @@
             <!-- No. Handphone -->
             <div class="input-style-1">
                 <label>No. Handphone</label>
-                <input type="telp" name="no_handphone" cols="30" rows="5" placeholder="Masukkan nomor hp" class="form-control <?= $validation->hasError('no_handphone') ? 'is-invalid' : '' ?>"></input>
+                <input type="telp" name="no_handphone" cols="30" rows="5" placeholder="Masukkan nomor hp" class="form-control <?= $validation->hasError('no_handphone') ? 'is-invalid' : '' ?>" value="<?= $pegawai['no_handphone'] ?>"></input>
 
                 <div class="invalid-feedback">
                     <?= $validation->getError('no_handphone') ?>
@@ -58,9 +63,9 @@
             <div class="input-style-1">
                 <label>Jabatan</label>
                 <select name="jabatan" class="form-control <?= $validation->hasError('jabatan') ? 'is-invalid' : '' ?>">
-                    <option value="">Pilih Jabatan</option>
+                    <option value="<?= $pegawai['jabatan'] ?>"><?= $pegawai['jabatan'] ?></option>
                     <?php foreach ($jabatan as $jab) : ?>
-                        <option value="<?= $jab['id'] ?>"><?= $jab['jabatan'] ?></option>
+                        <option value="<?= $jab['jabatan'] ?>"><?= $jab['jabatan'] ?></option>
                     <?php endforeach; ?>
                 </select>
 
@@ -73,7 +78,7 @@
             <div class="input-style-1">
                 <label>Lokasi Presensi</label>
                 <select name="lokasi_presensi" class="form-control <?= $validation->hasError('lokasi_presensi') ? 'is-invalid' : '' ?>">
-                    <option value="">Pilih Lokasi Presensi</option>
+                    <option value="<?= $pegawai['lokasi_presensi'] ?>"><?= $pegawai['lokasi_presensi'] ?></option>
                     <?php foreach ($lokasi_presensi as $lok) : ?>
                         <option value="<?= $lok['id'] ?>"><?= $lok['nama_lokasi'] ?></option>
                     <?php endforeach; ?>
@@ -87,6 +92,7 @@
             <!-- Foto -->
             <div class="input-style-1">
                 <label>Foto</label>
+                <input type="hidden" value="<?= $pegawai['foto'] ?>" name="foto_lama">
                 <input type="file" class="form-control <?= $validation->hasError('foto') ? 'is-invalid' : '' ?>" name="foto" />
 
                 <div class="invalid-feedback">
@@ -97,7 +103,7 @@
             <!-- Username -->
             <div class="input-style-1">
                 <label>Username</label>
-                <input type="text" class="form-control <?= $validation->hasError('username') ? 'is-invalid' : '' ?>" name="username" placeholder="Masukkan Username" />
+                <input type="text" class="form-control <?= $validation->hasError('username') ? 'is-invalid' : '' ?>" name="username" placeholder="Masukkan Username" value="<?= $pegawai['username'] ?>" />
 
                 <div class="invalid-feedback">
                     <?= $validation->getError('username') ?>
@@ -107,6 +113,7 @@
             <!-- Password -->
             <div class="input-style-1">
                 <label>Password</label>
+                <input type="hidden" value="<?= $pegawai['password'] ?>" name="password_lama">
                 <input type="password" class="form-control <?= $validation->hasError('password') ? 'is-invalid' : '' ?>" name="password" placeholder="Masukkan Password" />
 
                 <div class="invalid-feedback">
@@ -129,8 +136,8 @@
                 <label>Role</label>
                 <select name="role" class="form-control <?= $validation->hasError('role') ? 'is-invalid' : '' ?>">
                     <option value="">Pilih Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="pegawai">Pegawai</option>
+                    <option value="Admin" <?= $pegawai['role'] == 'Admin' ? 'selected' : '' ?>>Admin</option>
+                    <option value="Pegawai" <?= $pegawai['role'] == 'Pegawai' ? 'selected' : '' ?>>Pegawai</option>
                 </select>
 
                 <div class="invalid-feedback">
@@ -138,7 +145,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="main-btn primary-btn btn-hover" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Simpan</button>
+            <button type="submit" class="main-btn primary-btn btn-hover" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Update</button>
         </form>
     </div>
 </div>

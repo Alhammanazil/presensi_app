@@ -27,4 +27,14 @@ class PegawaiModel extends Model
         $builder->where('pegawai.id', $id);
         return $builder->get()->getRowArray();
     }
+
+    public function editPegawai($id)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('pegawai');
+        $builder->select('pegawai.*, users.username, users.password, users.status, users.role');
+        $builder->join('users', 'users.id_pegawai = pegawai.id');
+        $builder->where('pegawai.id', $id);
+        return $builder->get()->getRowArray();
+    }
 }
