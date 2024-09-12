@@ -41,6 +41,7 @@ class Login extends BaseController
                     $session_data = [
                         'username' => $cekusername['username'],
                         'role_id' => $cekusername['role'],
+                        'id_pegawai' => $cekusername['id'],
                         'logged_in' => TRUE
                     ];
                     $session->set($session_data);
