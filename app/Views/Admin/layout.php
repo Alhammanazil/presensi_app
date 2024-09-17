@@ -109,10 +109,10 @@
                     </a>
                     <ul id="ddmenu_1" class="collapse dropdown-nav">
                         <li>
-                            <a href="index.html"> Rekap Harian </a>
+                            <a href="<?= base_url('admin/rekap_harian') ?>"> Rekap Harian </a>
                         </li>
                         <li>
-                            <a href="index.html"> Rekap Bulanan </a>
+                            <a href="<?= base_url('admin/rekap_bulanan') ?>"> Rekap Bulanan </a>
                         </li>
                     </ul>
                 </li>
