@@ -137,7 +137,7 @@ if (isset($lokasi_presensi['zona_waktu'])) {
     <div class="col-md-2"></div>
 </div>
 
-<div id="map"></div>
+<div class="row mt-3" style="width: 500px; margin: 0 auto;" id="map"></div>
 
 <script>
     // Waktu Masuk
@@ -187,7 +187,15 @@ if (isset($lokasi_presensi['zona_waktu'])) {
 
     // Map - Leaflet
     function initMap(latitude_pegawai, longitude_pegawai) {
-        var map = L.map('map').setView([<?= $lokasi_presensi['latitude'] ?>, <?= $lokasi_presensi['longitude'] ?>], 13);
+        var latitude = <?= isset($lokasi_presensi['latitude']) ? $lokasi_presensi['latitude'] : 'null' ?>;
+        var longitude = <?= isset($lokasi_presensi['longitude']) ? $lokasi_presensi['longitude'] : 'null' ?>;
+
+        if (latitude === null || longitude === null) {
+            alert("Lokasi kantor tidak tersedia.");
+            return;
+        }
+
+        var map = L.map('map').setView([latitude, longitude], 13);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -204,7 +212,6 @@ if (isset($lokasi_presensi['zona_waktu'])) {
         var greenIcon = L.icon({
             iconUrl: '<?= base_url('assets/images/gedung.png') ?>',
             shadowUrl: '<?= base_url('assets/images/gedung.png') ?>',
-
             iconSize: [50, 64], // size of the icon
             shadowSize: [50, 64], // size of the shadow
             iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
@@ -212,11 +219,10 @@ if (isset($lokasi_presensi['zona_waktu'])) {
             popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        L.marker([<?= $lokasi_presensi['latitude'] ?>, <?= $lokasi_presensi['longitude'] ?>], {
+        L.marker([latitude, longitude], {
             icon: greenIcon
-        }).addTo(map);
+        }).addTo(map).bindPopup("Lokasi Kantor.").openPopup();
 
-        marker.bindPopup("Lokasi Kantor.").openPopup();
         circle.bindPopup("Lokasi Sekarang.").openPopup();
     }
 </script>

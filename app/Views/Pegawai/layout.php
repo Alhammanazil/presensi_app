@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/logo/logo-icon-big.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.svg') ?>" type="image/x-icon" />
     <title><?= $title ?></title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="nav-item mb-2">
-                    <a href="invoice.html">
+                    <a href="<?= base_url('pegawai/rekap_presensi') ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />

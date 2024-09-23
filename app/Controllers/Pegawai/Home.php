@@ -17,16 +17,33 @@ class Home extends BaseController
         $presensi_model = new PresensiModel();
         $id_pegawai = session()->get('id_pegawai');
         $pegawai = $pegawai_model->where('id', $id_pegawai)->first();
+
+        // Set up DateTime dengan Zona Waktu Jakarta
+        $zone = new \DateTimeZone('Asia/Jakarta');
+        $date = new \DateTime('now', $zone);
+        $formattedDate = $date->format('Y-m-d');
+
+        $cek_presensi = $presensi_model->where('id_pegawai', $id_pegawai)
+            ->where('tanggal_masuk', $formattedDate)
+            ->countAllResults();
+
+        $cek_presensi_keluar = $presensi_model->where('id_pegawai', $id_pegawai)
+            ->where('tanggal_keluar', $formattedDate)
+            ->countAllResults();
+
         $data = [
             'title' => 'Home',
             'lokasi_presensi' => $lokasi_presensi->where('id', $pegawai['lokasi_presensi'])->first(),
-            'cek_presensi' => $presensi_model->where('id_pegawai', $id_pegawai)->where('tanggal_masuk', date('Y-m-d'))->countAllResults(),
-            // cek presensi keluar
-            'cek_presensi_keluar' => $presensi_model->where('id_pegawai', $id_pegawai)->where('tanggal_keluar', date('Y-m-d'))->countAllResults(),
-            'ambil_presensi_masuk' => $presensi_model->where('id_pegawai', $id_pegawai)->where('tanggal_masuk', date('Y-m-d'))->first()
+            'cek_presensi' => $cek_presensi,
+            'cek_presensi_keluar' => $cek_presensi_keluar,
+            'ambil_presensi_masuk' => $presensi_model->where('id_pegawai', $id_pegawai)
+                ->where('tanggal_masuk', $formattedDate)
+                ->first()
         ];
+
         return view('pegawai/home', $data);
     }
+
 
     public function presensi_masuk()
     {

@@ -36,6 +36,7 @@ $routes->get('admin/data_pegawai/detail/(:segment)', 'Admin\DataPegawai::detail/
 $routes->get('admin/data_pegawai/delete/(:segment)', 'Admin\DataPegawai::delete/$1', ['filter' => 'adminfilter']);
 
 $routes->get('admin/rekap_harian', 'Admin\RekapPresensi::rekap_harian', ['filter' => 'adminfilter']);
+$routes->get('admin/rekap_bulanan', 'Admin\RekapPresensi::rekap_bulanan', ['filter' => 'adminfilter']);
 
 // Pegawai
 $routes->get('pegawai/home', 'Pegawai\Home::index', ['filter' => 'pegawaifilter']);
@@ -44,3 +45,5 @@ $routes->post('pegawai/presensi_masuk_aksi', 'Pegawai\Home::presensi_masuk_aksi'
 
 $routes->post('pegawai/presensi_keluar/(:segment)', 'Pegawai\Home::presensi_keluar/$1', ['filter' => 'pegawaifilter']);
 $routes->post('pegawai/presensi_keluar_aksi/(:segment)', 'Pegawai\Home::presensi_keluar_aksi/$1', ['filter' => 'pegawaifilter']);
+
+$routes->get('pegawai/rekap_presensi', 'Pegawai\RekapPresensi::index', ['filter' => 'pegawaifilter']);
