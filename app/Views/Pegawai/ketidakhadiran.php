@@ -27,7 +27,7 @@
                     <td><?= $ketidakhadiran['keterangan'] ?></td>
                     <td><?= $ketidakhadiran['deskripsi'] ?></td>
                     <td>
-                        <a href="<?= base_url('file_ketidakhadiran/' . $ketidakhadiran['file']) ?>" class="badge bg-primary"><i class="lni lni-download"></i> Unduh</a>
+                        <a href="<?= base_url('file_ketidakhadiran/' . $ketidakhadiran['file']) ?>" class="badge bg-success" target="_blank"><i class="lni lni-eye"></i> Detail</a>
                     </td>
                     <td><?= $ketidakhadiran['status'] ?></td>
                     <td>

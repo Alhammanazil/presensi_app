@@ -95,4 +95,84 @@ class Ketidakhadiran extends BaseController
             return redirect()->to(base_url('pegawai/ketidakhadiran'));
         }
     }
+
+    public function edit($id)
+    {
+        $ketidakhadiranModel = new ketidakhadiranModel();
+        $data = [
+            'title' => 'Edit Ketidakhadiran',
+            'validation' => \Config\Services::validation(),
+            'ketidakhadiran' => $ketidakhadiranModel->find($id)
+        ];
+        return view('pegawai/edit_ketidakhadiran', $data);
+    }
+
+    public function update($id)
+    {
+        $rules = [
+            'keterangan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Keterangan harus diisi'
+                ],
+            ],
+            'tanggal' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tanggal harus diisi'
+                ],
+            ],
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi harus diisi'
+                ],
+            ],
+            'file' => [
+                'rules' => 'max_size[file,1024]|mime_in[file,image/jpg,image/jpeg,image/png, application/pdf, application/docx]',
+                'errors' => [
+                    'max_size' => 'Maksimal ukuran file 1MB',
+                    'mime_in' => 'File harus berformat pdf, docx, jpg, jpeg, png'
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            $ketidakhadiranModel = new ketidakhadiranModel();
+            $data = [
+                'title' => 'Edit Ketidakhadiran',
+                'validation' => \Config\Services::validation(),
+                'ketidakhadiran' => $ketidakhadiranModel->find($id)
+            ];
+            return view('pegawai/edit_ketidakhadiran', $data);
+        } else {
+            $ketidakhadiranModel = new ketidakhadiranModel();
+
+            $file = $this->request->getFile('file');
+            if ($file->getError() == 4) {
+                $nama_file = $this->request->getPost('file_lama');
+            } else {
+                $nama_file = $file->getRandomName();
+                $file->move('file_ketidakhadiran', $nama_file);
+            }
+
+            $ketidakhadiranModel->update($id, [
+                'keterangan' => $this->request->getPost('keterangan'),
+                'tanggal' => $this->request->getPost('tanggal'),
+                'deskripsi' => $this->request->getPost('deskripsi'),
+                'file' => $nama_file,
+            ]);
+
+            session()->setFlashdata('berhasil', 'Data berhasil diubah');
+            return redirect()->to(base_url('pegawai/ketidakhadiran'));
+        }
+    }
+
+    public function delete($id)
+    {
+        $ketidakhadiranModel = new ketidakhadiranModel();
+        $ketidakhadiranModel->delete($id);
+        session()->setFlashdata('berhasil', 'Data berhasil dihapus');
+        return redirect()->to(base_url('pegawai/ketidakhadiran'));
+    }
 }
