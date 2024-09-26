@@ -17,6 +17,9 @@
 
     <!-- =========== Tabler ICON ========= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/1.35.0/iconfont/tabler-icons.min.css" integrity="sha512-tpsEzNMLQS7w9imFSjbEOHdZav3/aObSESAL1y5jyJDoICFF2YwEdAHOPdOr1t+h8hTzar0flphxR76pd0V1zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css" />
 </head>
 
 <!-- Leaflet CSS -->
@@ -246,7 +249,15 @@
     <!-- Sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.js"></script>
+
     <script>
+        // Datatables
+        $(document).ready(function() {
+            $('#ketidakhadiran').DataTable();
+        });
+
         // Sweetalert gagal
         $(function() {
             <?php if (session()->has('gagal')) { ?>
@@ -256,6 +267,46 @@
                     text: "<?= $_SESSION['gagal'] ?>"
                 });
             <?php } ?>
+        });
+
+        // Sweetalert berhasil
+        $(function() {
+            <?php if (session()->has('berhasil')) { ?>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "<?= $_SESSION['berhasil'] ?>"
+                });
+            <?php } ?>
+        });
+
+        // Sweetalert konfirmasi hapus
+        $('.tombol-hapus').on('click', function() {
+            var getLink = $(this).attr('href');
+            Swal.fire({
+                title: "Hapus data?",
+                text: "Data yang di hapus tidak dapat dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = getLink;
+                }
+            });
+            return false;
         });
     </script>
 </body>

@@ -1,10 +1,8 @@
-<?= $this->extend('pegawai/layout.php') ?>
+<?= $this->extend('admin/layout.php') ?>
 
 <?= $this->section('content') ?>
 
-<a href="<?= base_url('pegawai/ketidakhadiran/create') ?>" class="btn btn-primary mb-3"><i class="lni lni-circle-plus"></i> Ajukan</a>
-
-<table id="ketidakhadiran" class="table table-striped table-hover">
+<table id="jabatan" class="table table-striped table-hover">
     <thead>
         <tr>
             <th scope="col">No</th>
@@ -27,7 +25,7 @@
                     <td><?= $ketidakhadiran['keterangan'] ?></td>
                     <td><?= $ketidakhadiran['deskripsi'] ?></td>
                     <td>
-                        <a href="<?= base_url('file_ketidakhadiran/' . $ketidakhadiran['file']) ?>" class="badge bg-success" target="_blank"><i class="lni lni-eye"></i> Lihat</a>
+                        <a href="<?= base_url('file_ketidakhadiran/' . $ketidakhadiran['file']) ?>" class="badge bg-primary" target="_blank"><i class="lni lni-eye"></i> Lihat</a>
                     </td>
                     <td>
                         <?php if ($ketidakhadiran['status'] == 'Pending') : ?>
@@ -39,9 +37,7 @@
                         <?php endif ?>
                     </td>
                     <td>
-                        <a href="<?= base_url('pegawai/ketidakhadiran/edit/' . $ketidakhadiran['id']) ?>" class="badge bg-warning"><i class="lni lni-pencil"></i></a>
-
-                        <a href="<?= base_url('pegawai/ketidakhadiran/delete/' . $ketidakhadiran['id']) ?>" class="badge bg-danger tombol-hapus"><i class="lni lni-trash-can"></i></a>
+                        <a href="<?= base_url('admin/approved_ketidakhadiran/' . $ketidakhadiran['id']) ?>" class="badge bg-success"><i class="lni lni-checkmark-circle"></i> Approve</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

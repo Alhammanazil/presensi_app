@@ -39,6 +39,9 @@ $formatted_date = formatTanggalIndonesia($tanggal);
     <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">Filter</button>
     </div>
+    <div class="col-auto">
+        <button type="submit" name="excel" class="btn btn-success mb-3">Export Excel</button>
+    </div>
 </form>
 
 <!-- Tabel Rekap Harian -->

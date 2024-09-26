@@ -88,7 +88,7 @@ class Ketidakhadiran extends BaseController
                 'tanggal' => $this->request->getPost('tanggal'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
                 'file' => $nama_file,
-                'status' => 'Menunggu'
+                'status' => 'Pending'
             ]);
 
             session()->setFlashdata('berhasil', 'Data berhasil diajukan');
