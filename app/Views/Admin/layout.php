@@ -256,9 +256,9 @@
                     <div class="col-md-6 order-last order-md-first">
                         <div class="copyright text-center text-md-start">
                             <p class="text-sm">
-                                Designed and Developed by
-                                <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                                    PlainAdmin
+                                Developed by
+                                <a href="https://alham-manazil.netlify.app/" rel="nofollow" target="_blank">
+                                    Alham Manazil
                                 </a>
                             </p>
                         </div>
